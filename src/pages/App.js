@@ -37,13 +37,15 @@ function App() {
     console.log('Removendo registro', id);
 
     // utilizar filter.
+    const newRepos = repos.filter(repo => repo.id !== id);
+    newRepos.length > 0 ? setRepos(newRepos) : setRepos([]);
   }
 
 
   return (
     <Container>
       <img src={gitLogo} width={72} height={72} alt="github logo"/>
-      <Input value={currentRepo} onChange={(e) => setCurrentRepo(e.target.value)} />
+      <Input value={currentRepo} onChange={(e) => setCurrentRepo(e.target.value)}/>
       <Button onClick={handleSearchRepo}/>
       {repos.map(repo => <ItemRepo handleRemoveRepo={handleRemoveRepo} repo={repo}/>)}
     </Container>
